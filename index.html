@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Your IP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .ip-container {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .loading {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>What's My IP?</h1>
+    <div class="ip-container">
+        <span class="loading">Hawk Tuah</span>
+    </div>
+
+    <script>
+        // Fetch the IP using ipify API
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.ip-container').textContent = `Your IP Address is: ${data.ip}`;
+            })
+            .catch(error => {
+                document.querySelector('.ip-container').textContent = 'Failed to fetch your IP. Please try again.';
+                console.error('Error fetching IP:', error);
+            });
+    </script>
+</body>
+</html>
